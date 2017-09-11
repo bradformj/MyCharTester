@@ -5,8 +5,8 @@ public class ThirdPersonOrbitCam : MonoBehaviour
 {
     public Camera playerCamera;
 	public Transform player;                                           // Player's reference.
-	public Vector3 pivotOffset = new Vector3(0.0f, 1.0f,  0.0f);       // Offset to repoint the camera.
-	public Vector3 camOffset   = new Vector3(0.0f, 0.7f, -3.0f);       // Offset to relocate the camera related to the player position.
+	public Vector3 pivotOffset = new Vector3(0.0f, 1.6f,  0.0f);       // Offset to repoint the camera.
+	public Vector3 camOffset   = new Vector3(0.0f, .7f, -3.0f);       // Offset to relocate the camera related to the player position.
 	public float smooth = 10f;                                         // Speed of camera responsiveness.
 	public float horizontalAimingSpeed = 500f;                         // Horizontal turn speed.
 	public float verticalAimingSpeed = 500f;                           // Vertical turn speed.
@@ -26,7 +26,7 @@ public class ThirdPersonOrbitCam : MonoBehaviour
 	private float targetFOV;                                           // Target camera FIeld of View.
 	private float targetMaxVerticalAngle;                              // Custom camera max vertical clamp angle. 
     public float zoomSpeed = 5f;                                       // zoom speed for the camera
-    public float cameraDistance = 5f;
+    public float cameraDistance = 10f;
    
 	void Awake()
 	{
@@ -83,7 +83,7 @@ public class ThirdPersonOrbitCam : MonoBehaviour
         if (Input.GetAxisRaw("Mouse ScrollWheel") != 0)
         {
             float scrollV = Input.GetAxis("Mouse ScrollWheel");
-            cameraDistance = Mathf.Clamp(cameraDistance - (scrollV * zoomSpeed), 1.5f, 15f);
+            cameraDistance = Mathf.Clamp(cameraDistance - (scrollV * zoomSpeed), 1.5f, 25f);
         }
 
         targetCamOffset = (targetCamOffset / targetCamOffset.magnitude) * cameraDistance;
